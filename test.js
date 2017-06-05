@@ -35,21 +35,12 @@ store.registerReducer('locationSelector', reduceLocationSelector);
 
 const locationSelectorProxy = dispatch(createLocationSelector());
 
+const fooBarProxy = dispatch(createLocationSelector());
+
 locationSelectorProxy::setLocationSelectorValue('newValue');
 
 locationSelectorProxy::getFooBar();
 
+locationSelectorProxy::setFooBar(fooBarProxy);
+
 locationSelectorProxy::getLocationsCache();
-
-
-function getLocationsCache() {
-  return resolveReference(this, 'locationsCache');
-}
-
-function getFooBar() {
-  this.getState().locationSelectors[this.id].fooBar;
-}
-
-function setLocationSelectorValue(value) {
-  this.dispatch({type: 'SET_LS_VALUE', payload: {type: this.type, id: this.id, value}});
-}
